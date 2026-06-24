@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://cwftw4wgwespk"]
+
+[ext_resource type="Script" uid="uid://bpxf1vdtd87jl" path="res://Scene/Code/CharacterData.gd" id="1_a0y1s"]
+[ext_resource type="Texture2D" uid="uid://che44o71kwpwp" path="res://Asset/Mushroom80x80.png" id="2_wtax0"]
+
+[resource]
+script = ExtResource("1_a0y1s")
+char_name = "Mushroom"
+max_hp = 50
+sprite_dir = ExtResource("2_wtax0")

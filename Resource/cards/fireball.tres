@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cpi84ik88hgej"]
+
+[ext_resource type="Script" uid="uid://rf2qkgtxd8a2" path="res://Scene/Code/CardData.gd" id="1_v5ggi"]
+
+[resource]
+script = ExtResource("1_v5ggi")
+card_name = "Fireball"
+card_id = "fireball"
+card_detail = "Hurl a 20 Dmg fireball to target"
+card_mana_cost = 35
+card_dmg = 20
+metadata/_custom_type_script = "uid://rf2qkgtxd8a2"

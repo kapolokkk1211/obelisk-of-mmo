@@ -1,0 +1,509 @@
+[gd_scene format=3 uid="uid://bydscgva4iopp"]
+
+[ext_resource type="Script" uid="uid://ce31ig30o0l0u" path="res://Scene/FightScene.gd" id="1_r11ar"]
+[ext_resource type="Script" uid="uid://crg6mtdl0mj20" path="res://Scene/combat_manager.gd" id="2_1wm42"]
+[ext_resource type="Script" uid="uid://vsb8gsqev1ra" path="res://Scene/FightSceneUi.gd" id="2_5r4xt"]
+[ext_resource type="Script" uid="uid://tuw3ggsbwkpn" path="res://Scene/state_manager.gd" id="2_ikapl"]
+[ext_resource type="Texture2D" uid="uid://dmj7ot2u8x78" path="res://Asset/DeckIcon.png" id="3_1wm42"]
+[ext_resource type="PackedScene" uid="uid://dtryb3l1onm2m" path="res://Scene/CardUiBased.tscn" id="4_5r4xt"]
+[ext_resource type="Script" uid="uid://jlc8uw4d34b5" path="res://Scene/Code/marker.gd" id="4_ikapl"]
+[ext_resource type="Texture2D" uid="uid://ci8duf8bhcpsk" path="res://Asset/TileWhiteFrame.png" id="5_8x6s7"]
+[ext_resource type="Script" uid="uid://b8rqbvw8f2udj" path="res://Scene/combat_field.gd" id="7_8x6s7"]
+
+[node name="FightScene" type="Node2D" unique_id=2102970354]
+script = ExtResource("1_r11ar")
+
+[node name="StateManager" type="Node" parent="." unique_id=1646785152]
+script = ExtResource("2_ikapl")
+
+[node name="CombatManager" type="Node2D" parent="." unique_id=1852803408]
+script = ExtResource("2_1wm42")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=276528005]
+
+[node name="GameBG" type="ColorRect" parent="CanvasLayer" unique_id=174495775]
+offset_left = -28.0
+offset_top = -5.0
+offset_right = 1177.0
+offset_bottom = 669.0
+color = Color(0.15322092, 0.09580729, 0.37403634, 1)
+
+[node name="FightSceneUi" type="Control" parent="CanvasLayer" unique_id=384694774]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1150.0
+offset_bottom = 648.0
+script = ExtResource("2_5r4xt")
+
+[node name="BottomHUD" type="MarginContainer" parent="CanvasLayer/FightSceneUi" unique_id=1286489659]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 340.0
+offset_right = 1138.0
+offset_bottom = 631.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="UIRow" type="HBoxContainer" parent="CanvasLayer/FightSceneUi/BottomHUD" unique_id=332622734]
+layout_mode = 2
+
+[node name="LeftInfo" type="HBoxContainer" parent="CanvasLayer/FightSceneUi/BottomHUD/UIRow" unique_id=1543560867]
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Deck" type="Control" parent="CanvasLayer/FightSceneUi/BottomHUD/UIRow/LeftInfo" unique_id=1055332127]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="DeckIconTexture" type="TextureRect" parent="CanvasLayer/FightSceneUi/BottomHUD/UIRow/LeftInfo/Deck" unique_id=1616177570]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("3_1wm42")
+
+[node name="DiscardPile" type="Control" parent="CanvasLayer/FightSceneUi/BottomHUD/UIRow/LeftInfo" unique_id=2066616755]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="DiscardPileIconTexture" type="TextureRect" parent="CanvasLayer/FightSceneUi/BottomHUD/UIRow/LeftInfo/DiscardPile" unique_id=1595994872]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("3_1wm42")
+
+[node name="Hand" type="HBoxContainer" parent="CanvasLayer/FightSceneUi/BottomHUD/UIRow" unique_id=1819891563]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Card" parent="CanvasLayer/FightSceneUi/BottomHUD/UIRow/Hand" unique_id=1450972764 instance=ExtResource("4_5r4xt")]
+visible = false
+layout_mode = 2
+
+[node name="RightActions" type="HBoxContainer" parent="CanvasLayer/FightSceneUi/BottomHUD/UIRow" unique_id=1283368244]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Endturn" type="Button" parent="CanvasLayer/FightSceneUi/BottomHUD/UIRow/RightActions" unique_id=1232608938]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+text = "End Turn"
+
+[node name="UpperHUD" type="MarginContainer" parent="CanvasLayer/FightSceneUi" unique_id=1011966407]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 1147.0
+offset_bottom = 162.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="CombatField" type="Control" parent="CanvasLayer/FightSceneUi" unique_id=2090596960]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -530.0
+offset_top = -299.0
+offset_right = 541.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_8x6s7")
+
+[node name="CharacterUI" type="Control" parent="CanvasLayer/FightSceneUi/CombatField" unique_id=495251018]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerMarker" type="Control" parent="CanvasLayer/FightSceneUi/CombatField" unique_id=665273331]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -485.5
+offset_top = -192.5
+offset_right = -98.5
+offset_bottom = 143.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerSlot1" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker" unique_id=1132389613]
+position = Vector2(109, 80)
+script = ExtResource("4_ikapl")
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker/PlayerSlot1" unique_id=631158955]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="PlayerSlot2" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker" unique_id=330968416]
+position = Vector2(188, 80)
+script = ExtResource("4_ikapl")
+slot_id = 1
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker/PlayerSlot2" unique_id=428031949]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="PlayerSlot3" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker" unique_id=249190076]
+position = Vector2(266, 80)
+script = ExtResource("4_ikapl")
+slot_id = 2
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker/PlayerSlot3" unique_id=103000165]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="PlayerSlot4" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker" unique_id=1644372612]
+position = Vector2(109, 156)
+script = ExtResource("4_ikapl")
+slot_id = 3
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker/PlayerSlot4" unique_id=123104595]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="PlayerSlot5" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker" unique_id=151253352]
+position = Vector2(188, 156)
+script = ExtResource("4_ikapl")
+slot_id = 4
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker/PlayerSlot5" unique_id=1637806788]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="PlayerSlot6" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker" unique_id=500671913]
+position = Vector2(266, 156)
+script = ExtResource("4_ikapl")
+slot_id = 5
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker/PlayerSlot6" unique_id=622954860]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="PlayerSlot7" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker" unique_id=362288439]
+position = Vector2(109, 234)
+script = ExtResource("4_ikapl")
+slot_id = 6
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker/PlayerSlot7" unique_id=773253573]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="PlayerSlot8" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker" unique_id=1294210384]
+position = Vector2(188, 234)
+script = ExtResource("4_ikapl")
+slot_id = 7
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker/PlayerSlot8" unique_id=1802554012]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="PlayerSlot9" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker" unique_id=1393240055]
+position = Vector2(266, 234)
+script = ExtResource("4_ikapl")
+slot_id = 8
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/PlayerMarker/PlayerSlot9" unique_id=1910191822]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="MonsterMarker" type="Control" parent="CanvasLayer/FightSceneUi/CombatField" unique_id=1376818910]
+anchors_preset = 0
+offset_left = 700.0
+offset_right = 1043.0
+offset_bottom = 309.0
+
+[node name="MonsterSlot1" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker" unique_id=166433316]
+position = Vector2(93, 74)
+script = ExtResource("4_ikapl")
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker/MonsterSlot1" unique_id=200885857]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="MonsterSlot2" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker" unique_id=43303434]
+position = Vector2(169, 74)
+script = ExtResource("4_ikapl")
+slot_id = 1
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker/MonsterSlot2" unique_id=2048945129]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="MonsterSlot3" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker" unique_id=511428309]
+position = Vector2(244, 74)
+script = ExtResource("4_ikapl")
+slot_id = 2
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker/MonsterSlot3" unique_id=541711922]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="MonsterSlot4" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker" unique_id=302041068]
+position = Vector2(93, 152)
+script = ExtResource("4_ikapl")
+slot_id = 3
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker/MonsterSlot4" unique_id=790572769]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="MonsterSlot5" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker" unique_id=195046082]
+position = Vector2(169, 152)
+script = ExtResource("4_ikapl")
+slot_id = 4
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker/MonsterSlot5" unique_id=1555511707]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="MonsterSlot6" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker" unique_id=1237136464]
+position = Vector2(244, 152)
+script = ExtResource("4_ikapl")
+slot_id = 5
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker/MonsterSlot6" unique_id=326746537]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="MonsterSlot7" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker" unique_id=601655533]
+position = Vector2(93, 227)
+script = ExtResource("4_ikapl")
+slot_id = 6
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker/MonsterSlot7" unique_id=1504850511]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="MonsterSlot8" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker" unique_id=437476369]
+position = Vector2(169, 227)
+script = ExtResource("4_ikapl")
+slot_id = 7
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker/MonsterSlot8" unique_id=968883628]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="MonsterSlot9" type="Marker2D" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker" unique_id=1114849124]
+position = Vector2(244, 227)
+script = ExtResource("4_ikapl")
+slot_id = 8
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/FightSceneUi/CombatField/MonsterMarker/MonsterSlot9" unique_id=753816211]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_8x6s7")
+
+[node name="DebugLabels" type="Control" parent="CanvasLayer/FightSceneUi" unique_id=453693838]
+anchors_preset = 0
+offset_right = 670.0
+offset_bottom = 75.0
+
+[node name="SelectedCardState" type="Label" parent="CanvasLayer/FightSceneUi/DebugLabels" unique_id=1248237667]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://bydscgva4iopp"]
+
+[ext_resource type="Script" uid="uid://1fmx005m4vy3" path="res://Scene/turn_manager.gd" id="1_e0dac"]
+[ext_resource type="Texture2D" uid="uid://dmj7ot2u8x78" path="res://Asset/DeckIcon.png" id="1_jx223"]
+[ext_resource type="Script" uid="uid://ce31ig30o0l0u" path="res://Scene/fight_scene.gd" id="1_vjjrv"]
+[ext_resource type="Script" uid="uid://b5me6nlc3r1ab" path="res://Scene/Code/root_ui.gd" id="3_e0dac"]
+[ext_resource type="Script" uid="uid://jlc8uw4d34b5" path="res://Scene/Code/marker.gd" id="5_vjjrv"]
+
+[sub_resource type="GDScript" id="GDScript_w34uy"]
+script/source = "#combat manager
+extends Node2D
+class_name CombatManager
+
+@onready var root_UI : rootUI = $\"../CanvasLayer/RootUI\"
+@onready var hand = $\"../CanvasLayer/RootUI/BottomHUD/UIRow/Hand\"
+
+func _ready() -> void:
+	call_deferred(\"spawn_char_UI\", \"res://Resource/Cavalry.tres\", \"PLAYER\", 1)
+	call_deferred(\"spawn_char_UI\", \"res://Resource/Mushroom.tres\", \"ENEMY\", 5)
+	
+	#spawn_char_UI(\"res://Resource/Centaur.tres\", \"PLAYER\", 1)
+	
+	
+func spawn_char_UI(char_res_dir, char_group, marker_index) -> void:
+	root_UI.spawn_char_UI(char_res_dir, char_group, marker_index)
+"
+
+[sub_resource type="GDScript" id="GDScript_boao7"]
+script/source = "extends Node2D
+"
+
+[sub_resource type="GDScript" id="GDScript_m0v1l"]
+
+[sub_resource type="GDScript" id="GDScript_e0dac"]
+script/source = "extends Control
+"
+
+[node name="FightScene" type="Node2D" unique_id=2102970354]
+script = ExtResource("1_vjjrv")
+
+[node name="TurnManager" type="Node" parent="." unique_id=1646785152]
+script = ExtResource("1_e0dac")
+
+[node name="CombatManager" type="Node2D" parent="." unique_id=1852803408]
+script = SubResource("GDScript_w34uy")
+
+[node name="PlayerData" type="Node2D" parent="CombatManager" unique_id=1145000331]
+script = SubResource("GDScript_boao7")
+
+[node name="EnemyData" type="Node2D" parent="CombatManager" unique_id=798627265]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=276528005]
+
+[node name="GameBG" type="ColorRect" parent="CanvasLayer" unique_id=174495775]
+offset_left = -28.0
+offset_top = -5.0
+offset_right = 1177.0
+offset_bottom = 669.0
+color = Color(0.15322092, 0.09580729, 0.37403634, 1)
+
+[node name="RootUI" type="Control" parent="CanvasLayer" unique_id=384694774]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1150.0
+offset_bottom = 648.0
+script = ExtResource("3_e0dac")
+
+[node name="BottomHUD" type="MarginContainer" parent="CanvasLayer/RootUI" unique_id=1286489659]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 385.0
+offset_right = 1138.0
+offset_bottom = 631.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="UIRow" type="HBoxContainer" parent="CanvasLayer/RootUI/BottomHUD" unique_id=332622734]
+layout_mode = 2
+
+[node name="LeftInfo" type="HBoxContainer" parent="CanvasLayer/RootUI/BottomHUD/UIRow" unique_id=1543560867]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Deck" type="Control" parent="CanvasLayer/RootUI/BottomHUD/UIRow/LeftInfo" unique_id=1055332127]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="DeckIconTexture" type="TextureRect" parent="CanvasLayer/RootUI/BottomHUD/UIRow/LeftInfo/Deck" unique_id=1616177570]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("1_jx223")
+
+[node name="DiscardPile" type="Control" parent="CanvasLayer/RootUI/BottomHUD/UIRow/LeftInfo" unique_id=2066616755]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="DiscardPileIconTexture" type="TextureRect" parent="CanvasLayer/RootUI/BottomHUD/UIRow/LeftInfo/DiscardPile" unique_id=1595994872]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("1_jx223")
+
+[node name="Hand" type="HBoxContainer" parent="CanvasLayer/RootUI/BottomHUD/UIRow" unique_id=1819891563]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = -50
+alignment = 1
+
+[node name="RightActions" type="HBoxContainer" parent="CanvasLayer/RootUI/BottomHUD/UIRow" unique_id=1283368244]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Endturn" type="Button" parent="CanvasLayer/RootUI/BottomHUD/UIRow/RightActions" unique_id=1232608938]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "End Turn"
+
+[node name="UpperHUD" type="MarginContainer" parent="CanvasLayer/RootUI" unique_id=1011966407]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 1147.0
+offset_bottom = 162.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="ConbatField" type="Control" parent="CanvasLayer/RootUI" unique_id=2090596960]
+anchors_preset = 0
+offset_left = 37.0
+offset_top = 70.0
+offset_right = 1121.0
+offset_bottom = 353.0
+script = SubResource("GDScript_m0v1l")
+
+[node name="Marker" type="Control" parent="CanvasLayer/RootUI/ConbatField" unique_id=665273331]
+anchors_preset = 0
+offset_left = -5.0
+offset_top = -57.0
+offset_right = 1147.0
+offset_bottom = 217.0
+script = ExtResource("5_vjjrv")
+
+[node name="PlayerSlot1" type="Marker2D" parent="CanvasLayer/RootUI/ConbatField/Marker" unique_id=1132389613]
+position = Vector2(109, 226)
+
+[node name="PlayerSlot2" type="Marker2D" parent="CanvasLayer/RootUI/ConbatField/Marker" unique_id=742216581]
+position = Vector2(229, 226)
+
+[node name="PlayerSlot3" type="Marker2D" parent="CanvasLayer/RootUI/ConbatField/Marker" unique_id=1207074844]
+position = Vector2(349, 226)
+
+[node name="PlayerSlot4" type="Marker2D" parent="CanvasLayer/RootUI/ConbatField/Marker" unique_id=1837617160]
+position = Vector2(469, 226)
+
+[node name="EnemySlot1" type="Marker2D" parent="CanvasLayer/RootUI/ConbatField/Marker" unique_id=936155316]
+position = Vector2(665, 226)
+
+[node name="EnemySlot2" type="Marker2D" parent="CanvasLayer/RootUI/ConbatField/Marker" unique_id=1628053360]
+position = Vector2(785, 226)
+
+[node name="EnemySlot3" type="Marker2D" parent="CanvasLayer/RootUI/ConbatField/Marker" unique_id=1533582149]
+position = Vector2(905, 226)
+
+[node name="EnemySlot4" type="Marker2D" parent="CanvasLayer/RootUI/ConbatField/Marker" unique_id=2096664956]
+position = Vector2(1025, 226)
+
+[node name="CharacterUI" type="Control" parent="CanvasLayer/RootUI/ConbatField" unique_id=495251018]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_e0dac")

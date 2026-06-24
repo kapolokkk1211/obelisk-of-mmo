@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dtryb3l1onm2m"]
+
+[ext_resource type="Texture2D" uid="uid://kxvrwhvt8tub" path="res://Asset/CardTemplate150x200.png" id="1_2vbxp"]
+[ext_resource type="Script" uid="uid://c3xbpranqec0s" path="res://Scene/Code/CardUiBased.gd" id="2_5ofqa"]
+[ext_resource type="Texture2D" uid="uid://caer8k63brloi" path="res://Asset/CardTemplate150x200_clicked.png" id="2_ht5ps"]
+
+[node name="Card" type="TextureButton" unique_id=754880040]
+custom_minimum_size = Vector2(150, 200)
+offset_right = 150.0
+offset_bottom = 200.0
+pivot_offset_ratio = Vector2(0.5, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("1_2vbxp")
+texture_pressed = ExtResource("2_ht5ps")
+script = ExtResource("2_5ofqa")
+
+[node name="CardTexture" type="TextureRect" parent="." unique_id=1018533431]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 149.0
+offset_bottom = 132.0
+
+[node name="CardName" type="Label" parent="." unique_id=624320991]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 148.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Card Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardDetail" type="Label" parent="." unique_id=790153837]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 134.0
+offset_right = 139.0
+offset_bottom = 173.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Card Detail"
+autowrap_mode = 3
+
+[node name="DamageLabel" type="Label" parent="." unique_id=1883804560]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 170.0
+offset_right = 95.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "10"
+vertical_alignment = 1
+
+[node name="ManaLabel" type="Label" parent="." unique_id=1557758468]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 171.0
+offset_right = 142.0
+offset_bottom = 194.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "20"
+horizontal_alignment = 2
+vertical_alignment = 1
