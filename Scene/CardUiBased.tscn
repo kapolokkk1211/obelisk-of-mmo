@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dtryb3l1onm2m"]
 
 [ext_resource type="Texture2D" uid="uid://kxvrwhvt8tub" path="res://Asset/CardTemplate150x200.png" id="1_2vbxp"]
-[ext_resource type="Script" uid="uid://c3xbpranqec0s" path="res://Scene/Code/CardUiBased.gd" id="2_5ofqa"]
+[ext_resource type="Script" uid="uid://c3xbpranqec0s" path="res://Scene/Code/CardUi.gd" id="2_5ofqa"]
 [ext_resource type="Texture2D" uid="uid://caer8k63brloi" path="res://Asset/CardTemplate150x200_clicked.png" id="2_ht5ps"]
 
 [node name="Card" type="TextureButton" unique_id=754880040]

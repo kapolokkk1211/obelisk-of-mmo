@@ -9,7 +9,6 @@ func set_up():
 	if data.texture:
 		$CardTexture.texture = data.texture
 	#### For future texture
-	
 	$CardName.text = data.card_name
 	$CardDetail.text = data.card_detail
 	$DamageLabel.text = str(data.card_dmg)
@@ -25,9 +24,3 @@ func set_selected(value: bool):
 	else:
 		scale = Vector2.ONE
 		button_pressed = false
-
-func execute(target : CharacterUi):
-	if target:
-		target.hurt(data.card_dmg)
-	else:
-		print("no valid target")

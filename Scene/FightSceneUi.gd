@@ -52,7 +52,7 @@ func _on_card_ui_pressed(new_select_card_ui : CardUi):
 	##DB
 	$DebugLabels/SelectedCardState.text = str(current_selected_card_ui.data.card_name)
 	
-func find_monster_on_position(input_position : Vector2) -> CharacterUi:
+func find_monster_on_position(input_position : Vector2) -> CharacterRuntime:
 	return $CombatField.find_monster_on_input(input_position)
 	
 	

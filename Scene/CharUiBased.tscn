@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6vlly75vus3i"]
 
-[ext_resource type="Script" uid="uid://crmhsn80i1stf" path="res://Scene/CharacterUi.gd" id="1_m6b2v"]
+[ext_resource type="Script" uid="uid://crmhsn80i1stf" path="res://Scene/Code/CharUi.gd" id="1_m6b2v"]
 [ext_resource type="Texture2D" uid="uid://c2us32abm5lfk" path="res://Asset/Cavalry80x80.png" id="2_m6b2v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6b2v"]

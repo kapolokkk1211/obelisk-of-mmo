@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://bydscgva4iopp"]
 
-[ext_resource type="Script" uid="uid://ce31ig30o0l0u" path="res://Scene/FightScene.gd" id="1_r11ar"]
-[ext_resource type="Script" uid="uid://crg6mtdl0mj20" path="res://Scene/combat_manager.gd" id="2_1wm42"]
+[ext_resource type="Script" uid="uid://ce31ig30o0l0u" path="res://Scene/Code/FightScene.gd" id="1_r11ar"]
+[ext_resource type="Script" uid="uid://crg6mtdl0mj20" path="res://Scene/Code/combat_manager.gd" id="2_1wm42"]
 [ext_resource type="Script" uid="uid://vsb8gsqev1ra" path="res://Scene/FightSceneUi.gd" id="2_5r4xt"]
 [ext_resource type="Script" uid="uid://tuw3ggsbwkpn" path="res://Scene/state_manager.gd" id="2_ikapl"]
 [ext_resource type="Texture2D" uid="uid://dmj7ot2u8x78" path="res://Asset/DeckIcon.png" id="3_1wm42"]
 [ext_resource type="PackedScene" uid="uid://dtryb3l1onm2m" path="res://Scene/CardUiBased.tscn" id="4_5r4xt"]
 [ext_resource type="Script" uid="uid://jlc8uw4d34b5" path="res://Scene/Code/marker.gd" id="4_ikapl"]
 [ext_resource type="Texture2D" uid="uid://ci8duf8bhcpsk" path="res://Asset/TileWhiteFrame.png" id="5_8x6s7"]
-[ext_resource type="Script" uid="uid://b8rqbvw8f2udj" path="res://Scene/combat_field.gd" id="7_8x6s7"]
+[ext_resource type="Script" uid="uid://b8rqbvw8f2udj" path="res://Scene/Code/combat_field.gd" id="7_8x6s7"]
 
 [node name="FightScene" type="Node2D" unique_id=2102970354]
 script = ExtResource("1_r11ar")

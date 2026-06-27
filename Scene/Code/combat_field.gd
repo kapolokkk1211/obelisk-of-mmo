@@ -1,7 +1,7 @@
 extends Control
 
 
-func find_monster_on_input(input_position : Vector2) -> CharacterUi:
+func find_monster_on_input(input_position : Vector2) -> CharacterRuntime:
 	
 	var closest_marker : BattlerMarker
 	
@@ -12,4 +12,4 @@ func find_monster_on_input(input_position : Vector2) -> CharacterUi:
 			closest_marker = each
 			
 	
-	return closest_marker.char_here
+	return closest_marker.char_here.char_runtime
